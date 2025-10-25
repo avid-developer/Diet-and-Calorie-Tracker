@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Diet & Calorie Tracker</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Diet & Calorie Tracker</h1>
+  </header>
+
+  <main>
+    <section id="food-management">
+      <h2>Manage Foods</h2>
+      <form id="food-form">
+        <input id="food-id" type="hidden" />
+        <input id="food-name" placeholder="Food name" required />
+        <input id="food-unit" placeholder="Unit (e.g. 1 slice, 100 g)" />
+        <input id="food-kcal" type="number" placeholder="kcal per unit" required min="0" />
+        <div class="food-macros">
+          <input id="food-protein" type="number" placeholder="Protein (g)" min="0" step="0.1" aria-label="Protein grams per unit" />
+          <input id="food-carbs" type="number" placeholder="Carbs (g)" min="0" step="0.1" aria-label="Carbohydrates grams per unit" />
+          <input id="food-fat" type="number" placeholder="Fat (g)" min="0" step="0.1" aria-label="Fat grams per unit" />
+        </div>
+        <div class="form-actions">
+          <button type="submit">Save Food</button>
+          <button type="button" id="food-cancel" class="secondary" hidden>Cancel</button>
+        </div>
+      </form>
+      <div id="food-feedback" role="status" aria-live="polite"></div>
+      <div id="food-list"></div>
+    </section>
+
+    <section id="meal-logging">
+      <h2>Log Meal</h2>
+      <form id="meal-form">
+        <input id="meal-id" type="hidden" />
+        <div class="row">
+          <label>
+            <span>Date</span>
+            <input id="meal-date" type="date" required />
+          </label>
+          <label>
+            <span>Time</span>
+            <input id="meal-time" type="time" required />
+          </label>
+        </div>
+
+        <div id="meal-items" class="meal-items"></div>
+        <button type="button" id="meal-add-item" class="secondary">Add Food Item</button>
+
+        <div class="meal-total" aria-live="polite">
+          <div>Total: <span id="meal-total">0</span> kcal</div>
+          <div class="meal-total-macros">
+            <span>P: <strong id="meal-total-protein">0</strong> g</span>
+            <span>C: <strong id="meal-total-carbs">0</strong> g</span>
+            <span>F: <strong id="meal-total-fat">0</strong> g</span>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit">Save Meal</button>
+          <button type="button" id="meal-cancel" class="secondary" hidden>Cancel</button>
+        </div>
+      </form>
+      <div id="meal-feedback" role="status" aria-live="polite"></div>
+      <div id="meal-list"></div>
+    </section>
+
+    <section id="goals">
+      <h2>Daily Goal</h2>
+      <form id="goal-form">
+        <input id="goal-kcal" type="number" placeholder="Daily kcal target" min="0" required />
+        <button type="submit">Set Goal</button>
+      </form>
+      <div id="goal-status"></div>
+    </section>
+
+    <section id="summary">
+      <h2>Summary</h2>
+      <div class="summary-card" aria-live="polite">
+        <h3>Today</h3>
+        <div id="daily-summary" class="daily-summary">No data yet.</div>
+      </div>
+      <div class="summary-card">
+        <h3>Last 7 Days</h3>
+        <div class="summary-controls">
+          <form id="weekly-form" class="inline-form">
+            <label>
+              <span>Week ending</span>
+              <input type="date" id="weekly-end-date" required />
+            </label>
+            <button type="submit" class="secondary">View</button>
+          </form>
+          <button type="button" id="weekly-export" class="secondary">Export CSV</button>
+          <button type="button" id="macro-breakdown-toggle" class="secondary">Macro breakdown</button>
+        </div>
+        <div id="weekly-summary" class="weekly-summary">No data yet.</div>
+      </div>
+    </section>
+  </main>
+
+  <div id="macro-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="macro-modal-title" hidden>
+    <div class="modal-content">
+      <header class="modal-header">
+        <h2 id="macro-modal-title">Weekly macro distribution</h2>
+        <button type="button" id="macro-modal-close" aria-label="Close macro breakdown" class="secondary">Close</button>
+      </header>
+      <div id="macro-modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <script type="module" src="src/js/app.js"></script>
+</body>
+</html>

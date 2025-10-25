@@ -1,0 +1,19 @@
+{
+  "name": "diet-calorie-tracker",
+  "version": "0.1.0",
+  "description": "Lightweight browser-based diet & calorie tracker (student mini project)",
+  "type": "module",
+  "scripts": {
+    "start": "npx http-server . -p 5173 --silent",
+    "test": "npm run test:storage",
+    "test:storage": "node tests/test_storage.js",
+    "test:e2e": "playwright test",
+    "test:all": "npm run test:storage && npm run test:e2e"
+  },
+  "author": "Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "http-server": "^14.1.1"
+  }
+}
